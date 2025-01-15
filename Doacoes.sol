@@ -5,6 +5,8 @@ pragma solidity ^0.8.0;
 /*
 ** Um simples Smart Contract para doações :)
 ** Onde apenas quem fez o deploy consegue fazer o saque
+** Depois do saque, os registros dos doadores desaparecem
+** Mas ainda assim, dá para checar no histórico de transações na Blockchain
 ** dApps são demais+
 
 ## Made by HELIO3AO
@@ -32,6 +34,10 @@ contract Doacoes{
 
     // fazer a doacao
     function doar() public payable onlyDoador {
+        // verificar se o endereco ja foi adicionado
+        if(lista_doadores[msg.sender] == 0){
+            array_doadores.push(msg.sender); // adicionar
+        }
         lista_doadores[msg.sender] += msg.value / (10 ** 18); // salva o valor wei em ether
     }
 

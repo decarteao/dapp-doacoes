@@ -48,12 +48,12 @@ contract Doacoes{
     // fazer o levantamento
     function levantar() public payable onlyOwner{
         // fazer o saque
-            payable(msg.sender).transfer(address(this).balance);
+        payable(msg.sender).transfer(address(this).balance);
 
-            // zerar a lista de doadores dps do saque
-            for(uint256 idx = 0; idx < array_doadores.length; idx++){
-                delete lista_doadores[array_doadores[idx]];
-            }
-            delete array_doadores;
+        // zerar a lista de doadores dps do saque
+        for(uint256 idx = 0; idx < array_doadores.length; idx++){
+            delete lista_doadores[array_doadores[idx]];
+        }
+        delete array_doadores;
     }
 }
